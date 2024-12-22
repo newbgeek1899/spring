@@ -51,9 +51,6 @@
 
     <script>
         const schedule = {
-    // Added office hours section
-    officeHours: "2 Office Hours",
-    
             Monday: [
                 {
                     time: '9:20-10:10',
@@ -87,28 +84,12 @@
             ],
             Tuesday: [
                 {
-                    time: '3:05-3:55',
+                    time: '9:45-11:00',
                     type: 'TA Duty',
-                    course: 'MAC1140 Lab 20',
-                    location: '113HTL',
-                    role: 'TA',
-                    colleagues: ['Asare, Philip Nyamele', 'Khan, Ahmer Nadeem']
-                },
-                {
-                    time: '4:50-5:40',
-                    type: 'TA Duty',
-                    course: 'MAC1140 Lab 29',
-                    location: '113HTL',
-                    role: 'TA',
-                    colleagues: ['Khan, Ahmer Nadeem', 'Mazus, Daniel']
-                },
-                {
-                    time: '6:35-7:25',
-                    type: 'TA Duty',
-                    course: 'MAC1140 Lab 31',
-                    location: '113HTL',
-                    role: 'TA',
-                    colleagues: ['Khan, Ahmer Nadeem', 'Mazus, Daniel']
+                    course: 'MGF1130 Lect 1',
+                    location: 'HWC2100',
+                    role: 'Proctor 3',
+                    colleagues: ['Philip Nyamele Asare', 'Gustav Jennetten']
                 }
             ],
             Wednesday: [
@@ -127,12 +108,20 @@
                     details: 'Your Class'
                 },
                 {
+                    time: '12:00-12:50',
+                    type: 'TA Duty',
+                    course: 'MAC1140 Lab 17',
+                    location: '113HTL',
+                    role: 'Proctor 1',
+                    colleagues: ['Wilk']
+                },
+                {
                     time: '1:20-2:35',
                     type: 'TA Duty',
                     course: 'MAC1140 Lect 19',
                     location: 'BEL102',
-                    role: 'TA',
-                    colleagues: ['Leon, Reyajul Hasan', 'Mazus, Daniel']
+                    role: 'Proctor 1',
+                    colleagues: ['Wilk']
                 },
                 {
                     time: '3:05-4:20',
@@ -140,35 +129,26 @@
                     course: 'MAT5939-01',
                     location: 'LOV',
                     details: 'Your Class'
-                },
-                {
-                    time: '4:50-6:05',
-                    type: 'Class',
-                    course: 'CAP5619-01',
-                    location: 'HCB',
-                    details: 'Your Class'
                 }
             ],
             Thursday: [
-      {
-        time: '9:45-11:00',
-        type: 'TA Duty',
-        course: 'MGF1130 Lect 1',
-        location: 'HWC2100',
-        role: 'Proctor 2',
-        professor: 'Prof. Harris',
-        colleagues: ['Asare, Philip Nyamele', 'Leon, Reyajul Hasan']
-      },
-      {
-        time: '1:20-2:35',
-        type: 'TA Duty',
-        course: 'MAC1140 Lect 1',
-        location: 'FLH275',
-        role: 'Proctor 2',
-        professor: 'Prof. Wilk',
-        colleagues: ['Prakash, Siddharth', 'Leon, Reyajul Hasan']
-      }
-    ],
+                {
+                    time: '9:45-11:00',
+                    type: 'TA Duty',
+                    course: 'MGF1130 Lect 1',
+                    location: 'HWC2100',
+                    role: 'Proctor 2',
+                    colleagues: ['Harris']
+                },
+                {
+                    time: '1:20-2:35',
+                    type: 'TA Duty',
+                    course: 'MAC1140 Lect 1',
+                    location: 'FLH275',
+                    role: 'Proctor 2',
+                    colleagues: ['Siddharth Prakash']
+                }
+            ],
             Friday: [
                 {
                     time: '9:20-10:10',
@@ -204,7 +184,6 @@
         updateClock();
 
         function showDay(day) {
-            // Update button styles
             const buttons = document.querySelectorAll('#dayButtons button');
             buttons.forEach(button => {
                 if (button.textContent === day) {
@@ -214,16 +193,15 @@
                 }
             });
 
-            // Display schedule
             const container = document.getElementById('scheduleContainer');
             const daySchedule = schedule[day];
-            
+
             if (!daySchedule || daySchedule.length === 0) {
                 container.innerHTML = '<div class="text-center text-gray-500 dark:text-gray-400 py-8">No events scheduled for ' + day + '</div>';
                 return;
             }
 
-            container.innerHTML = daySchedule.map((event, index) => `
+            container.innerHTML = daySchedule.map((event) => `
                 <div class="event-card p-4 rounded-lg shadow-md ${event.type === 'Class' ? 'bg-purple-50 dark:bg-purple-900' : 'bg-blue-50 dark:bg-blue-900'}">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-lg font-semibold ${event.type === 'Class' ? 'text-purple-700 dark:text-purple-300' : 'text-blue-700 dark:text-blue-300'}">${event.course}</span>
@@ -240,7 +218,6 @@
             `).join('');
         }
 
-        // Show Monday schedule by default
         showDay('Monday');
     </script>
 </body>
